@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía de Trámites AMIP</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <!-- Encabezado -->
+  <header class="shell">
+    <div class="brand">
+      <!-- Logo AMIP -->
+      <img src="assets/img/amip-logo.png" alt="AMIP" class="brand-amip" />
+      <div class="brand-title">
+        <h1>Guía de Trámites AMIP</h1>
+      </div>
+    </div>
+
+    <!-- Buscador -->
+    <div class="search">
+      <input id="q" type="search" placeholder="Nombre del trámite" aria-label="Buscar trámite">
+      <button id="btnBuscar" aria-label="Buscar">Buscar</button>
+    </div>
+  </header>
+
+  <!-- Hero mini (icono trámites + copy) -->
+  <section class="hero-mini">
+    <img src="assets/img/tramites-icon.png" alt="" class="hero-icon" />
+    <div>
+      <h2 class="hero-title">Trámites</h2>
+      <p class="hero-copy">Buscá por nombre o explorá por categoría. Las guías abren como páginas web (no PDF).</p>
+    </div>
+  </section>
+
+  <!-- Contenido principal -->
+  <main class="container">
+    <!-- Categorías -->
+    <nav class="tabs" role="tablist" aria-label="Categorías de trámites">
+      <button class="tab active" data-cat="Persona">Persona</button>
+      <button class="tab" data-cat="Rodados">Rodados</button>
+      <button class="tab" data-cat="Servicios Generales">Servicios Generales</button>
+      <button class="tab" data-cat="Tasas Comerciales">Tasas Comerciales</button>
+    </nav>
+
+    <!-- Lista de trámites -->
+    <section aria-live="polite">
+      <ul id="listaTramites" class="tramites"></ul>
+      <p id="vacio" class="muted" hidden>No hay trámites cargados en esta categoría.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <small>© AMIP — Guías en HTML (no PDF)</small>
+  </footer>
+
+  <!-- Script -->
+  <script src="assets/app.js"></script>
+</body>
+</html>
