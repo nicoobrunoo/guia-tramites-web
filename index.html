@@ -55,6 +55,23 @@
     <small>© AMIP — Guías en HTML (no PDF)</small>
   </footer>
 
+  <!-- Modal de opciones (movido antes del script) -->
+  <div id="opModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="opTitle">
+      <button class="modal-close" aria-label="Cerrar" data-close>×</button>
+
+      <div class="modal-header">
+        <h3 id="opTitle">Opciones</h3>
+        <p id="opSub" class="modal-sub"></p>
+      </div>
+
+      <div id="opActions" class="modal-actions">
+        <!-- Botones se inyectan por JS -->
+      </div>
+    </div>
+  </div>
+
   <!-- Script -->
   <script src="assets/app.js"></script>
 </body>

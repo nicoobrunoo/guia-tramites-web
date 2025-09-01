@@ -1,7 +1,17 @@
+
 [
   {
-    "categoria": "Rodados",
     "titulo": "Cambio de responsable de Pago",
+    "categoria": "Rodados",
     "guia": "guias/rodados-cambio-responsable.html"
+  },
+  {
+    "titulo": "Adhesión a Boleta Digital",
+    "categoria": "Rodados",
+    "guia": "guias/rodados-boleta-digital.html",
+    "iniciar": "https://amip.escobar.gob.ar/boletadigitalescobar/servlet/com.adhesiones.wpnuevaadhesion" 
   }
 ]
+
+  
+

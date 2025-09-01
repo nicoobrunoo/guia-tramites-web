@@ -4,6 +4,12 @@ const tabs = [...document.querySelectorAll('.tab')];
 const q = document.getElementById('q');
 const btnBuscar = document.getElementById('btnBuscar');
 
+// Modal elems (asegurate de tenerlos en el index)
+const modal = document.getElementById('opModal');
+const opTitle = document.getElementById('opTitle');
+const opSub = document.getElementById('opSub');
+const opActions = document.getElementById('opActions');
+
 let DATA = [];
 let categoriaActual = 'Persona';
 let terminoBusqueda = '';
@@ -40,7 +46,7 @@ function filtrar(){
   return DATA.filter(t => t.categoria === categoriaActual);
 }
 
-// Render
+// Render (ahora con botón único "Opciones")
 function render(scrollTop = false){
   const items = filtrar();
   lista.innerHTML = '';
@@ -60,14 +66,77 @@ function render(scrollTop = false){
     li.innerHTML = `
       <h3>${t.titulo}</h3>
       <div class="actions">
-        <a class="btn primary js-transition" href="${t.guia}">Guía de Trámite</a>
+        <button class="btn primary options-btn" type="button">Opciones</button>
       </div>
     `;
+    li.querySelector('.options-btn').addEventListener('click', () => openOptions(t));
     lista.appendChild(li);
   }
 
   if (scrollTop) window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+/* ===== Modal: abrir con acciones dinámicas ===== */
+function openOptions(tramite){
+  if (!modal) return; // por si faltara el markup
+
+  opTitle.textContent = 'Opciones';
+  opSub.textContent = tramite.titulo;
+  opActions.innerHTML = '';
+
+  // Guía de Trámite (siempre)
+  const aGuia = document.createElement('a');
+  aGuia.className = 'btn primary js-transition';
+  aGuia.href = tramite.guia;
+  aGuia.textContent = 'Guía de Trámite';
+  opActions.appendChild(aGuia);
+
+  // Iniciar Trámite (si existe)
+  if (tramite.iniciar){
+    const aIniciar = document.createElement('a');
+    aIniciar.className = 'btn secondary';
+    aIniciar.href = tramite.iniciar;
+    aIniciar.target = '_blank';
+    aIniciar.rel = 'noopener';
+    aIniciar.textContent = 'Iniciar Trámite';
+    opActions.appendChild(aIniciar);
+  }
+
+  showModal();
+}
+
+function showModal(){
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden','false');
+}
+
+function closeModal(){
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden','true');
+}
+
+// cerrar modal con backdrop o botón con data-close
+modal?.addEventListener('click', (e)=>{
+  if (e.target.matches('[data-close], .modal-backdrop')) closeModal();
+});
+// cerrar con ESC
+document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeModal(); });
+
+/* ===== Transición suave al ir a la guía (desde modal o lista) ===== */
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a.js-transition');
+  if (!link) return;
+
+  // si abre en nueva pestaña (Ctrl/⌘ o botón medio), no interceptar
+  if (e.ctrlKey || e.metaKey || e.button === 1) return;
+
+  e.preventDefault();
+  closeModal();
+  setTimeout(() => {
+    document.body.classList.add('leaving');   // usa las CSS de animación
+    setTimeout(() => { window.location.href = link.href; }, 220);
+  }, 80);
+});
 
 // Eventos UI
 tabs.forEach(tab => tab.addEventListener('click', () => {
@@ -86,19 +155,6 @@ q.addEventListener('keydown', (e) => {
     terminoBusqueda = q.value;
     render(true);
   }
-});
-
-// Transición suave al ir a la guía
-document.addEventListener('click', (e) => {
-  const link = e.target.closest('a.js-transition');
-  if (!link) return;
-
-  // si abre en nueva pestaña (Ctrl/⌘ o botón medio), no interceptar
-  if (e.ctrlKey || e.metaKey || e.button === 1) return;
-
-  e.preventDefault();
-  document.body.classList.add('leaving');   // usa las CSS de animación
-  setTimeout(() => { window.location.href = link.href; }, 220);
 });
 
 // Init
