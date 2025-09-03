@@ -5,31 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rodados — Cambio de responsable de Pago</title>
   <link rel="stylesheet" href="../assets/guia.css">
+  <!-- estilos del modo edición -->
+  <link rel="stylesheet" href="../assets/guia-edit.css">
 </head>
 <body>
-  <header class="header">
+  <header class="header" data-editable>
     <h1>Guía de Trámite</h1>
     <a class="back" href="../index.html">← Volver a Trámites</a>
   </header>
 
-  <main class="container page-enter">
+  <main class="container page-enter" data-editable>
     <!-- HERO -->
-    <section class="card hero">
-      <h2>Rodados — Cambio de responsable de Pago</h2>
-      <p class="updated">Última actualización: Sept 2023</p>
+    <section class="card hero" data-editable>
+      <h2 data-editable>Rodados — Cambio de responsable de Pago</h2>
+      <p class="updated" data-editable>Última actualización: Sept 2023</p>
 
-      <div class="info-grid">
-        <div class="panel">
-          <h3>Requisitos</h3>
-          <ul>
+      <div class="info-grid" data-editable>
+        <div class="panel" data-editable>
+          <h3 data-editable>Requisitos</h3>
+          <ul data-editable>
             <li>Título del automotor original y copia.</li>
             <li>Exhibir DNI del titular o responsable.</li>
             <li>Libre deuda si corresponde.</li>
           </ul>
         </div>
-        <div class="panel">
-          <h3>Canales de atención</h3>
-          <ul>
+
+        <div class="panel" data-editable>
+          <h3 data-editable>Canales de atención</h3>
+          <ul data-editable>
             <li>Presencial.</li>
             <li>Correo: <a href="mailto:amip@escobar.gob.ar">amip@escobar.gob.ar</a></li>
           </ul>
@@ -38,9 +41,9 @@
     </section>
 
     <!-- PASOS -->
-    <section class="card steps">
-      <h3>Pasos del trámite</h3>
-      <ol>
+    <section class="card steps" data-editable>
+      <h3 data-editable>Pasos del trámite</h3>
+      <ol data-editable>
         <li>Solicitar turno web y seleccionar “Rodados &gt; Cambio de responsable de Pago”.</li>
         <li>Presentar documentación en ventanilla.</li>
         <li>Firmar declaración y confirmar cambio.</li>
@@ -49,12 +52,23 @@
     </section>
 
     <!-- COSTOS -->
-    <section class="card costos">
-      <h3>Costos y plazos</h3>
-      <p>El arancel se informa en ventanilla según normativa vigente. El cambio impacta dentro de las 24–72 hs hábiles.</p>
+    <section class="card costos" data-editable>
+      <h3 data-editable>Costos y plazos</h3>
+      <p data-editable>El arancel se informa en ventanilla según normativa vigente. El cambio impacta dentro de las 24–72 hs hábiles.</p>
     </section>
 
-    <div class="footer">© AMIP</div>
+    <div class="footer" data-editable>© AMIP</div>
   </main>
+
+  <!-- Botón flotante: activar/Salir modo edición -->
+  <button id="editToggle" class="fab" title="Editar">
+    <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+  </button>
+
+  <!-- Guardar cambios (descarga el HTML actualizado) -->
+  <button id="saveGuide" class="save-btn" hidden>Guardar cambios</button>
+
+  <!-- script de edición en vivo -->
+  <script src="../assets/guia-edit.js"></script>
 </body>
 </html>

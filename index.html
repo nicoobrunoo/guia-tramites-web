@@ -3,28 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Guía de Trámites AMIP</title>
+  <title>Guía de Trámites</title>
   <link rel="stylesheet" href="assets/style.css">
+  <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-  <!-- Encabezado -->
+  <!-- Header -->
   <header class="shell">
     <div class="brand">
-      <!-- Logo AMIP -->
       <img src="assets/img/amip-logo.png" alt="AMIP" class="brand-amip" />
       <div class="brand-title">
-        <h1>Guía de Trámites AMIP</h1>
+        <h1>Guía de Trámites</h1>
       </div>
     </div>
 
-    <!-- Buscador -->
-    <div class="search">
-      <input id="q" type="search" placeholder="Nombre del trámite" aria-label="Buscar trámite">
-      <button id="btnBuscar" aria-label="Buscar">Buscar</button>
+    <!-- Acción principal: Agregar trámite -->
+    <div class="header-actions">
+      <button id="btnAgregar" class="add-btn" aria-label="Agregar trámite">+ Agregar trámite</button>
     </div>
   </header>
 
-  <!-- Hero mini (icono trámites + copy) -->
+  <!-- Hero mini -->
   <section class="hero-mini">
     <img src="assets/img/tramites-icon.png" alt="" class="hero-icon" />
     <div>
@@ -33,17 +32,23 @@
     </div>
   </section>
 
+  <!-- Buscador (debajo del hero) -->
+  <section class="search search-under" role="search">
+    <input id="q" type="search" placeholder="Nombre del trámite" aria-label="Buscar trámite">
+    <button id="btnBuscar" type="button" aria-label="Buscar">Buscar</button>
+  </section>
+
   <!-- Contenido principal -->
   <main class="container">
-    <!-- Categorías -->
+    <!-- Tabs de categorías -->
     <nav class="tabs" role="tablist" aria-label="Categorías de trámites">
-      <button class="tab active" data-cat="Persona">Persona</button>
-      <button class="tab" data-cat="Rodados">Rodados</button>
-      <button class="tab" data-cat="Servicios Generales">Servicios Generales</button>
-      <button class="tab" data-cat="Tasas Comerciales">Tasas Comerciales</button>
+      <button class="tab active" data-cat="Persona" role="tab" aria-selected="true">Persona</button>
+      <button class="tab" data-cat="Rodados" role="tab" aria-selected="false">Rodados</button>
+      <button class="tab" data-cat="Servicios Generales" role="tab" aria-selected="false">Servicios Generales</button>
+      <button class="tab" data-cat="Tasas Comerciales" role="tab" aria-selected="false">Tasas Comerciales</button>
     </nav>
 
-    <!-- Lista de trámites -->
+    <!-- Lista -->
     <section aria-live="polite">
       <ul id="listaTramites" class="tramites"></ul>
       <p id="vacio" class="muted" hidden>No hay trámites cargados en esta categoría.</p>
@@ -55,7 +60,7 @@
     <small>© AMIP — Guías en HTML (no PDF)</small>
   </footer>
 
-  <!-- Modal de opciones (movido antes del script) -->
+  <!-- Modal: Opciones de Trámite -->
   <div id="opModal" class="modal" aria-hidden="true">
     <div class="modal-backdrop" data-close></div>
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="opTitle">
@@ -66,13 +71,69 @@
         <p id="opSub" class="modal-sub"></p>
       </div>
 
-      <div id="opActions" class="modal-actions">
-        <!-- Botones se inyectan por JS -->
+      <div id="opActions" class="modal-actions"></div>
+    </div>
+  </div>
+
+  <!-- Modal: Agregar Trámite -->
+  <div id="addModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+      <button class="modal-close" aria-label="Cerrar" data-close>×</button>
+
+      <div class="modal-header">
+        <h3 id="addTitle">Agregar trámite</h3>
+        <p class="modal-sub">Elegí la categoría y poné el nombre del trámite.</p>
+      </div>
+
+      <form id="addForm" class="form">
+        <div class="field">
+          <label for="addCategoria">Categoría</label>
+          <select id="addCategoria" required>
+            <option value="Persona">Persona</option>
+            <option value="Rodados">Rodados</option>
+            <option value="Servicios Generales">Servicios Generales</option>
+            <option value="Tasas Comerciales">Tasas Comerciales</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="addTitulo">Nombre del trámite</label>
+          <input id="addTitulo" type="text" maxlength="120" placeholder="Ej: Certificado de Domicilio" required>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn" data-close>Cancelar</button>
+          <button type="submit" class="btn primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Editar HTML de la guía -->
+  <div id="editModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+      <button class="modal-close" aria-label="Cerrar" data-close>×</button>
+
+      <div class="modal-header">
+        <h3 id="editTitle">Editar guía</h3>
+        <p id="editSub" class="modal-sub"></p>
+      </div>
+
+      <div class="field">
+        <label for="editArea">Contenido HTML</label>
+        <textarea id="editArea" class="codearea" spellcheck="false"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn" data-close>Cancelar</button>
+        <button type="button" id="btnDescargarHtml" class="btn primary">Descargar HTML</button>
       </div>
     </div>
   </div>
 
-  <!-- Script -->
+  <!-- Scripts -->
   <script src="assets/app.js"></script>
 </body>
 </html>

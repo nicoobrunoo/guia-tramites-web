@@ -1,0 +1,42 @@
+/* guia-edit.css — Estilos para edición visual de guías */
+
+/* Botón flotante (lápiz) */
+.fab{
+  position:fixed; right:18px; bottom:18px;
+  width:52px; height:52px; border-radius:999px; border:0;
+  background:linear-gradient(135deg,var(--brand, #10b39f),var(--brand-2, #12d3b7));
+  color:#fff; box-shadow:0 16px 36px rgba(16,179,159,.28);
+  display:grid; place-items:center; cursor:pointer; z-index:50;
+}
+.fab svg{ width:22px; height:22px; fill:#fff }
+
+/* Botón guardar (aparece a la derecha del lápiz) */
+.save-btn{
+  position:fixed; right:86px; bottom:18px;
+  padding:12px 16px; border:0; border-radius:12px;
+  background:linear-gradient(135deg,var(--brand, #10b39f),var(--brand-2, #12d3b7)); color:#fff;
+  font-weight:700; cursor:pointer; box-shadow:0 16px 36px rgba(16,179,159,.28);
+  z-index:50;
+}
+
+/* Resaltado de bloques editables */
+[data-editable].editing{
+  outline:2px dashed rgba(16,179,159,.5);
+  outline-offset:4px;
+  background:#fbfffe;
+}
+
+/* Cursor visual cuando está activa la edición */
+.editing-on [data-editable]{ cursor:text; }
+
+/* Micro-hints (opcional) */
+.editing-on [data-editable]:hover{
+  box-shadow:0 0 0 2px rgba(16,179,159,.15) inset;
+  transition: box-shadow .15s ease;
+}
+
+/* Compatibilidad mínima si las variables no están definidas */
+:root{
+  --brand: #10b39f;
+  --brand-2: #12d3b7;
+}

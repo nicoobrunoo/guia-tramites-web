@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rodados — Alta de Débito Automático</title>
+
+  <!-- Estilos base del proyecto -->
+  <link rel="stylesheet" href="../assets/guia.css">
+  <link rel="stylesheet" href="../assets/guia-edit.css">
+
+  <!-- Overrides minimalistas para esta guía -->
+  <style>
+    :root{ --chip-bg:#eefaf8; --chip-border:#d6efe9; --chip-fg:#0f4b45; }
+    /* Header centrado y limpio (sin "Volver") */
+    .guide-top{position:relative; box-shadow:none; background:transparent; padding-top:18px;}
+    .guide-top__inner{max-width:960px; margin:0 auto; padding:0 16px;}
+    .guide-top .back-pill{display:none !important;}
+    .guide-title{margin:4px 0 8px; text-align:center; font-size:clamp(22px,3.2vw,30px);}
+
+    /* Chips meta bajo el título */
+    .meta-bar{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:6px 0 8px;}
+    .chip{
+      background:var(--chip-bg); border:1px solid var(--chip-border); color:var(--chip-fg);
+      padding:6px 10px; border-radius:9999px; font-weight:700; font-size:13px;
+    }
+
+    /* Tarjetas sutiles */
+    .card{border-radius:16px; border:1px solid #e7eef2; box-shadow:0 10px 26px rgba(2,8,23,.04);}
+
+    /* Lista de pasos con badges */
+    .steps-ol{counter-reset:s; margin:0; padding-left:0;}
+    .steps-ol li{list-style:none; margin:12px 0; padding-left:42px; position:relative;}
+    .steps-ol li::before{
+      content:counter(s); counter-increment:s;
+      position:absolute; left:0; top:0; width:28px; height:28px; border-radius:999px;
+      background:var(--chip-bg); color:var(--chip-fg); border:1px solid var(--chip-border);
+      display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px;
+    }
+
+    /* Tabla simple */
+    .simple-table{width:100%; border-collapse:separate; border-spacing:0; font-size:15px;}
+    .simple-table th, .simple-table td{padding:10px 12px; border-bottom:1px solid #e8edf1; vertical-align:top;}
+    .simple-table th{text-align:left; color:#0f4b45; font-weight:700;}
+    .simple-table tr:last-child th, .simple-table tr:last-child td{border-bottom:0;}
+
+    /* Footer sutil */
+    .footer{color:#7a8a97; font-size:12px; margin-top:18px;}
+
+    /* Impresión prolija */
+    @media print{
+      body{background:#fff;}
+      .fab, .save-btn{display:none !important;}
+      .card{box-shadow:none; border-color:#ddd;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header minimal: sólo título + chips -->
+  <header class="guide-top">
+    <div class="guide-top__inner">
+      <h1 class="guide-title" data-editable>Alta de Débito Automático</h1>
+      <div class="meta-bar">
+        <span class="chip">Rodados</span>
+        <span class="chip" data-editable>Actualizada: Sept 2025</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-enter" data-editable>
+    <!-- INFO PRINCIPAL -->
+    <section class="card hero" data-editable>
+      <div class="info-grid" data-editable>
+        <div class="panel" data-editable>
+          <h3 data-editable>Descripción</h3>
+          <p data-editable>Adhesión al débito automático del tributo de Rodados para que las cuotas se cobren de forma periódica desde tu cuenta bancaria o tarjeta. Podés dar de baja o modificar el medio de pago cuando lo necesites.</p>
+        </div>
+
+        <div class="panel" data-editable>
+          <h3 data-editable>Requisitos</h3>
+          <ul data-editable>
+            <li data-editable>DNI del titular o responsable de pago.</li>
+            <li data-editable>Datos del medio de pago a adherir:
+              <ul data-editable>
+                <li data-editable><strong>Cuenta bancaria:</strong> CBU o Alias + banco.</li>
+                <li data-editable><strong>Tarjeta:</strong> marca y últimos 4 dígitos.</li>
+              </ul>
+            </li>
+            <li data-editable>Ser titular del medio de pago o contar con autorización del titular.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CANALES -->
+    <section class="card" data-editable>
+      <h3 data-editable>Canales de atención</h3>
+      <ul data-editable>
+        <li data-editable>Presencial: ventanilla de Rodados (con turno si aplica).</li>
+        <li data-editable>Correo: <a href="mailto:amip@escobar.gob.ar">amip@escobar.gob.ar</a></li>
+        <!-- Si más adelante habilitan la adhesión online, editen/activen esta línea:
+        <li data-editable>En línea: <a href="#" target="_blank" rel="noopener">Portal AMIP</a></li> -->
+      </ul>
+    </section>
+
+    <!-- QUÉ SE PIDE SEGÚN MEDIO -->
+    <section class="card" data-editable>
+      <h3 data-editable>Documentación según el medio de pago</h3>
+      <table class="simple-table" data-editable>
+        <tr data-editable>
+          <th data-editable>Cuenta bancaria (CBU/Alias)</th>
+          <td data-editable>CBU/Alias, banco, tipo y número de cuenta. En algunos casos se solicita constancia de titularidad.</td>
+        </tr>
+        <tr data-editable>
+          <th data-editable>Tarjeta de crédito/débito</th>
+          <td data-editable>Marca, últimos 4 dígitos y autorización. Puede requerir firma del titular.</td>
+        </tr>
+      </table>
+      <p class="muted" style="margin-top:10px" data-editable>Nota: si ya tenés otro débito vigente sobre el mismo tributo, primero gestioná la baja para evitar cobros duplicados.</p>
+    </section>
+
+    <!-- PASOS -->
+    <section class="card steps" data-editable>
+      <h3 data-editable>Pasos del trámite</h3>
+      <ol class="steps-ol" data-editable>
+        <li data-editable>Solicitá turno web (si aplica) o acercate a ventanilla de Rodados.</li>
+        <li data-editable>Elegí el medio de pago (cuenta bancaria o tarjeta) y presentá los datos requeridos.</li>
+        <li data-editable>Firmá la solicitud de adhesión y aceptá términos y condiciones.</li>
+        <li data-editable>Recibí la constancia de alta. La adhesión impacta en la próxima liquidación disponible.</li>
+      </ol>
+    </section>
+
+    <!-- COSTOS -->
+    <section class="card costos" data-editable>
+      <h3 data-editable>Costos y plazos</h3>
+      <p data-editable>Sin costo de gestión municipal. La activación puede demorar <strong>24–72 h hábiles</strong> según la entidad. El primer débito se realizará en la siguiente cuota habilitada.</p>
+    </section>
+
+    <!-- OBSERVACIONES -->
+    <section class="card" data-editable>
+      <h3 data-editable>Observaciones</h3>
+      <ul data-editable>
+        <li data-editable>Para cambiar de banco o tarjeta, gestioná una nueva adhesión y luego solicitá la baja de la anterior.</li>
+        <li data-editable>Si el medio de pago es de un tercero, presentá autorización y copia de DNI.</li>
+        <li data-editable>Podés solicitar la baja del débito en cualquier momento; los cambios rigen para futuras liquidaciones.</li>
+      </ul>
+    </section>
+
+    <div class="footer" data-editable>© AMIP</div>
+  </main>
+
+  <!-- Botón flotante: activar/salir modo edición -->
+  <button id="editToggle" class="fab" title="Editar">
+    <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+  </button>
+
+  <!-- Guardar cambios (descarga el HTML actualizado) -->
+  <button id="saveGuide" class="save-btn" hidden>Guardar cambios</button>
+
+  <!-- Editor visual -->
+  <script src="../assets/guia-edit.js"></script>
+
+  <!-- Auto-imprimir si llega con ?autoprint=1 -->
+  <script>
+    (function(){
+      try{
+        const p = new URLSearchParams(location.search);
+        if (p.get('autoprint') === '1') {
+          addEventListener('load', () => setTimeout(() => print(), 300));
+        }
+      }catch(_){}
+    })();
+  </script>
+</body>
+</html>

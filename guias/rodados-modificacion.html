@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rodados — Modificación de Automotor</title>
+
+  <!-- Estilos base del proyecto -->
+  <link rel="stylesheet" href="../assets/guia.css">
+  <link rel="stylesheet" href="../assets/guia-edit.css">
+
+  <!-- Overrides minimalistas sólo para esta guía -->
+  <style>
+    :root{ --chip-bg:#eefaf8; --chip-border:#d6efe9; --chip-fg:#0f4b45; }
+    /* Header centrado y limpio (sin "Volver") */
+    .guide-top{position:relative; box-shadow:none; background:transparent; padding-top:18px;}
+    .guide-top__inner{max-width:960px; margin:0 auto; padding:0 16px;}
+    .guide-top .back-pill{display:none !important;}
+    .guide-title{margin:4px 0 8px; text-align:center; font-size:clamp(22px,3.2vw,30px);}
+
+    /* Chips meta bajo el título */
+    .meta-bar{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:6px 0 8px;}
+    .chip{
+      background:var(--chip-bg); border:1px solid var(--chip-border); color:var(--chip-fg);
+      padding:6px 10px; border-radius:9999px; font-weight:700; font-size:13px;
+    }
+
+    /* Tarjetas sutiles */
+    .card{border-radius:16px; border:1px solid #e7eef2; box-shadow:0 10px 26px rgba(2,8,23,.04);}
+
+    /* Listado de pasos con badges */
+    .steps-ol{counter-reset:s; margin:0; padding-left:0;}
+    .steps-ol li{list-style:none; margin:12px 0; padding-left:42px; position:relative;}
+    .steps-ol li::before{
+      content:counter(s); counter-increment:s;
+      position:absolute; left:0; top:0; width:28px; height:28px; border-radius:999px;
+      background:var(--chip-bg); color:var(--chip-fg); border:1px solid var(--chip-border);
+      display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px;
+    }
+
+    /* Tabla simple para tipos de modificación */
+    .simple-table{width:100%; border-collapse:separate; border-spacing:0; font-size:15px;}
+    .simple-table th, .simple-table td{padding:10px 12px; border-bottom:1px solid #e8edf1; vertical-align:top;}
+    .simple-table th{text-align:left; color:#0f4b45; font-weight:700;}
+    .simple-table tr:last-child th, .simple-table tr:last-child td{border-bottom:0;}
+
+    /* Footer sutil */
+    .footer{color:#7a8a97; font-size:12px; margin-top:18px;}
+
+    /* Impresión prolija */
+    @media print{
+      body{background:#fff;}
+      .fab, .save-btn{display:none !important;}
+      .card{box-shadow:none; border-color:#ddd;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header minimal: sólo título + chips -->
+  <header class="guide-top">
+    <div class="guide-top__inner">
+      <h1 class="guide-title" data-editable>Modificación de Automotor</h1>
+      <div class="meta-bar">
+        <span class="chip">Rodados</span>
+        <span class="chip" data-editable>Actualizada: Sept 2023</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-enter" data-editable>
+    <!-- INFO PRINCIPAL -->
+    <section class="card hero" data-editable>
+      <div class="info-grid" data-editable>
+        <div class="panel" data-editable>
+          <h3 data-editable>¿Qué modificaciones cubre?</h3>
+          <p data-editable>Trámite para declarar y registrar cambios físicos o de identificación del vehículo ante el tributo municipal de Rodados (ej.: <strong>cambio de motor</strong>, <strong>cambio de chasis</strong>, <strong>cambio de color</strong>, <strong>adaptaciones</strong>, <strong>cambio de tipo de combustible</strong>, entre otros).</p>
+        </div>
+
+        <div class="panel" data-editable>
+          <h3 data-editable>Requisitos generales</h3>
+          <ul data-editable>
+            <li data-editable>DNI del titular o responsable de pago.</li>
+            <li data-editable>Libre deuda del tributo de Rodados (si aplica).</li>
+            <li data-editable>Título y/o Cédula del automotor.</li>
+            <li data-editable>Constancias del Registro Seccional (DNRPA) según el tipo de modificación.</li>
+            <li data-editable>Comprobantes/Informe de verificación técnica o policial (si corresponde).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETALLE SEGÚN TIPO DE MODIFICACIÓN -->
+    <section class="card" data-editable>
+      <h3 data-editable>Documentación según el tipo de modificación</h3>
+      <table class="simple-table" data-editable>
+        <tr data-editable>
+          <th data-editable>Cambio de motor</th>
+          <td data-editable>
+            Constancia de alta de motor en DNRPA / ST 02 o 04, informe de verificación, factura/resp. de origen del motor (si corresponde).
+          </td>
+        </tr>
+        <tr data-editable>
+          <th data-editable>Cambio de chasis / cuadro</th>
+          <td data-editable>
+            Constancia de alta en DNRPA, informe de verificación, documentación de origen del chasis.
+          </td>
+        </tr>
+        <tr data-editable>
+          <th data-editable>Cambio de color</th>
+          <td data-editable>
+            Constancia de denuncia/registración de cambio de color en DNRPA.
+          </td>
+        </tr>
+        <tr data-editable>
+          <th data-editable>Adaptaciones (equipamiento)</th>
+          <td data-editable>
+            Constancias de homologación y/o verificación técnica, y registración en DNRPA si corresponde.
+          </td>
+        </tr>
+        <tr data-editable>
+          <th data-editable>Combustible (GNC/GLP u otros)</th>
+          <td data-editable>
+            Certificados de instalación/homologación, verificación técnica y registración en DNRPA.
+          </td>
+        </tr>
+      </table>
+      <p class="muted" style="margin-top:10px" data-editable>Nota: La documentación puede variar según normativa vigente y el tipo de modificación. Presentar originales y copias.</p>
+    </section>
+
+    <!-- PASOS -->
+    <section class="card steps" data-editable>
+      <h3 data-editable>Pasos del trámite</h3>
+      <ol class="steps-ol" data-editable>
+        <li data-editable>Solicitá turno web (si aplica) o acercate a ventanilla de Rodados.</li>
+        <li data-editable>Presentá la documentación general y la específica según el tipo de modificación.</li>
+        <li data-editable>Completá y firmá el formulario/declaración de modificación de automotor.</li>
+        <li data-editable>El organismo valida la documentación y registra la modificación para el tributo municipal.</li>
+        <li data-editable>Retirá la constancia. Los cambios impactan en las próximas liquidaciones.</li>
+      </ol>
+    </section>
+
+    <!-- COSTOS -->
+    <section class="card costos" data-editable>
+      <h3 data-editable>Costos y plazos</h3>
+      <p data-editable>El arancel se informa en ventanilla según normativa vigente. La actualización impacta dentro de 24–72 h hábiles.</p>
+    </section>
+
+    <!-- OBSERVACIONES -->
+    <section class="card" data-editable>
+      <h3 data-editable>Observaciones</h3>
+      <ul data-editable>
+        <li data-editable>El registro ante DNRPA debe realizarse previo o en paralelo a esta gestión municipal, según el caso.</li>
+        <li data-editable>Si el trámite lo realiza un tercero, presentar autorización y copia de DNI.</li>
+        <li data-editable>La municipalidad puede requerir documentación adicional para validar la modificación declarada.</li>
+      </ul>
+    </section>
+
+    <div class="footer" data-editable>© AMIP</div>
+  </main>
+
+  <!-- Botón flotante: activar/salir modo edición -->
+  <button id="editToggle" class="fab" title="Editar">
+    <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+  </button>
+
+  <!-- Guardar cambios (descarga el HTML actualizado) -->
+  <button id="saveGuide" class="save-btn" hidden>Guardar cambios</button>
+
+  <!-- Editor visual -->
+  <script src="../assets/guia-edit.js"></script>
+
+  <!-- Auto-imprimir si llega con ?autoprint=1 -->
+  <script>
+    (function(){
+      try{
+        const p = new URLSearchParams(location.search);
+        if (p.get('autoprint') === '1') {
+          addEventListener('load', () => setTimeout(() => print(), 300));
+        }
+      }catch(_){}
+    })();
+  </script>
+</body>
+</html>

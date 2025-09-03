@@ -1,4 +1,3 @@
-
 [
   {
     "titulo": "Cambio de responsable de Pago",
@@ -10,8 +9,40 @@
     "categoria": "Rodados",
     "guia": "guias/rodados-boleta-digital.html",
     "iniciar": "https://amip.escobar.gob.ar/boletadigitalescobar/servlet/com.adhesiones.wpnuevaadhesion" 
+  },
+  {
+    "titulo": "Cambio de Titularidad Inmobiliario",
+    "categoria": "Inmobiliario",
+    "guia": "guias/inmobiliario-cambio-titularidad.html"
+  },
+  {
+    "titulo": "Cambio de titularidad Automotor",
+    "categoria": "Rodados",
+    "guia": "guias/rodados-cambio-titularidad.html"
+  },
+  {
+    "titulo": "Modificación de automotor",
+    "categoria": "Rodados",
+    "guia": "guias/rodados-modificacion.html"
+  },
+  {
+    "titulo": "Alta de automotor",
+    "categoria": "Rodados",
+    "guia": "guias/rodados-alta.html"
+  },
+  {
+    "titulo": "Alta de débito automático",
+    "categoria": "Rodados",
+    "guia": "guias/pagos-debito-alta.html"
+  },
+  {
+    "titulo": "Baja de automotor",
+    "categoria": "Rodados",
+    "guia": "guias/rodados-baja.html"
+  },
+  {
+    "titulo": "Baja de débito automático",
+    "categoria": "Rodados",
+    "guia": "guias/pagos-debito-baja.html"
   }
 ]
-
-  
-

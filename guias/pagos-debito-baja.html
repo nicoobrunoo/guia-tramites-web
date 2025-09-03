@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Baja de Debitos Automaticos</title>
+
+  <!-- Estilos base del proyecto -->
+  <link rel="stylesheet" href="../assets/guia.css">
+  <link rel="stylesheet" href="../assets/guia-edit.css">
+
+  <!-- Overrides minimalistas sólo para esta guía -->
+  <style>
+    :root{
+      --chip-bg:#eefaf8; --chip-border:#d6efe9; --chip-fg:#0f4b45;
+    }
+    /* Header centrado y limpio (sin "Volver") */
+    .guide-top{position:relative; box-shadow:none; background:transparent; padding-top:18px;}
+    .guide-top__inner{max-width:960px; margin:0 auto; padding:0 16px;}
+    .guide-top .back-pill{display:none !important;}
+    .guide-title{margin:4px 0 8px; text-align:center; font-size:clamp(22px,3.2vw,30px);}
+
+    /* Chips meta */
+    .meta-bar{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:6px 0 8px;}
+    .chip{background:var(--chip-bg); border:1px solid var(--chip-border); color:var(--chip-fg);
+          padding:6px 10px; border-radius:9999px; font-weight:700; font-size:13px;}
+
+    /* Tarjetas más etéreas */
+    .card{border-radius:16px; border:1px solid #e7eef2; box-shadow:0 10px 26px rgba(2,8,23,.04);}
+
+    /* Lista de pasos con numeración redonda */
+    .steps-ol{counter-reset:s; margin:0; padding-left:0;}
+    .steps-ol li{list-style:none; margin:12px 0; padding-left:42px; position:relative;}
+    .steps-ol li::before{
+      content:counter(s); counter-increment:s;
+      position:absolute; left:0; top:0; width:28px; height:28px; border-radius:999px;
+      background:var(--chip-bg); color:var(--chip-fg); border:1px solid var(--chip-border);
+      display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px;
+    }
+
+    /* Footer sutil */
+    .footer{color:#7a8a97; font-size:12px; margin-top:18px;}
+
+    /* Impresión prolija (oculta herramientas) */
+    @media print{
+      body{background:#fff;}
+      .fab, .save-btn{display:none !important;}
+      .card{box-shadow:none; border-color:#ddd;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header minimal: sólo título + chips -->
+  <header class="guide-top">
+    <div class="guide-top__inner">
+      <h1 class="guide-title" data-editable> Baja de Debitos Automaticos</h1>
+      <div class="meta-bar">
+        <span class="chip">Rodados</span>
+        <span class="chip" data-editable>Actualizada: Sept 2023</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-enter" data-editable>
+    <!-- HERO -->
+    <section class="card hero" data-editable>
+      <div class="info-grid" data-editable>
+        <div class="panel" data-editable>
+          <h3 data-editable>Requisitos</h3>
+          <ul data-editable>
+            <li data-editable>Ser titular o responsable del rodado.</li>
+            <li data-editable>Datos del débito vigente (CBU/alias o tarjeta adherida).</li>
+            <li data-editable>Documento de identidad.</li>
+          </ul>
+        </div>
+
+        <div class="panel" data-editable>
+          <h3 data-editable>Canales de atención</h3>
+          <ul data-editable>
+            <li data-editable>Presencial.</li>
+            <li data-editable>Correo: <a href="mailto:amip@escobar.gob.ar">amip@escobar.gob.ar</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PASOS -->
+    <section class="card steps" data-editable>
+      <h3 data-editable>Pasos del trámite</h3>
+      <ol class="steps-ol" data-editable>
+        <li data-editable>Solicitá la baja del débito para el tributo de Rodados indicando dominio/patente.</li>
+        <li data-editable>Completá y firmá el formulario de baja del débito automático.</li>
+        <li data-editable>Confirmá la solicitud y conservá la constancia.</li>
+        <li data-editable>La baja impacta para las próximas liquidaciones.</li>
+      </ol>
+    </section>
+
+    <!-- COSTOS -->
+    <section class="card costos" data-editable>
+      <h3 data-editable>Costos y plazos</h3>
+      <p data-editable>Sin costo. Impacto dentro de 24–72 h hábiles (según ciclo de débito del banco/tarjeta).</p>
+    </section>
+
+    <div class="footer" data-editable>© AMIP</div>
+  </main>
+
+  <!-- Botón flotante: activar/salir modo edición -->
+  <button id="editToggle" class="fab" title="Editar">
+    <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+  </button>
+
+  <!-- Guardar cambios (descarga el HTML actualizado) -->
+  <button id="saveGuide" class="save-btn" hidden>Guardar cambios</button>
+
+  <!-- Editor visual -->
+  <script src="../assets/guia-edit.js"></script>
+
+  <!-- Auto-imprimir si llega con ?autoprint=1 -->
+  <script>
+    (function(){
+      try{
+        const p = new URLSearchParams(location.search);
+        if (p.get('autoprint') === '1') {
+          addEventListener('load', () => setTimeout(() => print(), 300));
+        }
+      }catch(_){}
+    })();
+  </script>
+</body>
+</html>
